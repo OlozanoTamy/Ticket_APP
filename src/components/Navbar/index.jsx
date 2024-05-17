@@ -1,6 +1,10 @@
-import { useState } from "react";
-function Navbar({ onSearch }) {
+import { useState, useEffect, forwardRef } from "react";
+
+const Navbar = forwardRef(({ onSearch }, ref) => {
   const [search, setSearch] = useState("");
+  useEffect(() => {
+    console.log("1010");
+  }, [search, onSearch]);
 
   function handleChange(evento) {
     setSearch(evento.target.value);
@@ -11,8 +15,9 @@ function Navbar({ onSearch }) {
       onSearch(search);
     }
   }
+
   return (
-    <>
+    <div ref={ref}>
       <p>Mi Boletera</p>
       <input
         placeholder="Busca tu evento favorito"
@@ -20,8 +25,7 @@ function Navbar({ onSearch }) {
         onKeyDown={handleKeyDown}
         value={search}
       ></input>
-    </>
+    </div>
   );
-}
-
+});
 export default Navbar;
