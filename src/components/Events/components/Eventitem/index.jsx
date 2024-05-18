@@ -1,3 +1,4 @@
+import styles from "./Eventitem.module.css";
 const Eventitems = ({ info, name, image, id, onEventClick }) => {
   const handleSeeMoreClick = (e) => {
     e.stopPropagation();
@@ -8,11 +9,17 @@ const Eventitems = ({ info, name, image, id, onEventClick }) => {
       onClick={() => {
         console.log("Padre Clickeado");
       }}
+      className={styles.eventItemContainer}
     >
       <img src={image} alt="imagen concierto" width={200} height={200} />
-      <h4>{name}</h4>
-      <p>{info}</p>
-      <button onClick={handleSeeMoreClick}>Ver Mas</button>
+
+      <div className={styles.eventInfoContainer}>
+        <h4 className={styles.eventName}>{name}</h4>
+        <p className={styles.eventInfo}>{info}</p>
+        <button className={styles.seeMoreBtn} onClick={handleSeeMoreClick}>
+          Ver Mas
+        </button>
+      </div>
     </div>
   );
 };
