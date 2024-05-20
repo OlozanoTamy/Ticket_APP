@@ -4,13 +4,17 @@ import Events from "../../components/Events";
 import useEventsData from "../../hooks/useEventsData";
 import ReactPaginate from "react-paginate";
 import styles from "./Home.module.css";
+import useEventResults from "../../state/event-results";
 const Home = () => {
-  const { events, isLoading, error, fetchEvents, page } = useEventsData();
+  const { data, isLoading, error, fetchEvents } = useEventResults();
+  const events = data._embedded?.events || [];
+  const page = data?.page || {};
   const [searchTerm, setSearchTerm] = useState("");
   const containerRef = useRef();
 
   useEffect(() => {
     fetchEvents();
+    console.log(import.meta.env.VITE_API);
   }, []);
 
   useEffect(() => {
