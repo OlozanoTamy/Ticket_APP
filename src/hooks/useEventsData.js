@@ -26,8 +26,7 @@ const useEventsData = () => {
     const fetchEvents = async (params) => {
         try {
             console.log(params)
-            const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${import.meta.env.VITE_API
-                }&countryCode=us${params?.length ? params : ""}`)
+            const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=${import.meta.env.VITE_API}&countryCode=us${params?.length ? params : ""}`)
             const data = await response.json()
             setData(data)
             setIsloading(false)

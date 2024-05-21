@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = forwardRef(({ onSearch }, ref) => {
   const [search, setSearch] = useState("");
@@ -42,6 +43,13 @@ const Navbar = forwardRef(({ onSearch }, ref) => {
             width: 200,
           }}
         ></input>
+        {/* Para solicitar acceso a my perfil */}
+        <Link
+          to={"/profile/my-info"}
+          style={{ marginLeft: "24px", color: "white", textDecoration: "none" }}
+        >
+          My Profile
+        </Link>
       </div>
     </div>
   );

@@ -1,14 +1,18 @@
 import styles from "./Eventitem.module.css";
 import sinrelleno from "../../../../assets/sinrelleno.png";
 import relleno from "../../../../assets/relleno.png";
-
+//Se instancia el ultimo hook
+import useLikeEvent from "../../../../hooks/useLikeEvent";
 const Eventitems = ({ info, name, image, id, onEventClick }) => {
   const handleSeeMoreClick = (e) => {
     e.stopPropagation();
     onEventClick(id);
   };
 
-  const handleHeartClick = () => {};
+  const { isEventLiked, toggleEventLike } = useLikeEvent(id);
+  const handleHeartClick = () => {
+    toggleEventLike();
+  };
 
   return (
     <div
@@ -20,7 +24,7 @@ const Eventitems = ({ info, name, image, id, onEventClick }) => {
       <div className={styles.imageContainer}>
         <img
           onClick={handleHeartClick}
-          src={relleno}
+          src={isEventLiked ? relleno : sinrelleno}
           alt="Heart button"
           className={styles.heartImage}
         />
